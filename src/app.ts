@@ -1,10 +1,11 @@
 import * as Express from 'express'
+import * as swaggerUi from 'swagger-ui-express'
+import * as cors from 'cors'
 
+import openApiDocumentation from './openApiDocumentation'
 import UserRoutes from './Routes/users'
 import StateRoutes from './Routes/state'
-
-import * as swaggerUi from 'swagger-ui-express'
-import openApiDocumentation from './openApiDocumentation'
+import corsOptions from './corsConfig'
 
 export class App {
   public app: Express.Application
@@ -21,7 +22,10 @@ export class App {
   }
 
   private loadMiddleware() {
+    // JSON
     this.app.use(Express.json())
+    // CORS
+    this.app.use(cors(corsOptions))
   }
 
   private loadRoutes() {

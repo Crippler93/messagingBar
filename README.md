@@ -16,6 +16,7 @@ Make sure you have mongodb service running and that you copy `.env-local` conten
 > **environment keys**
 > **PORT**: specify the port number for the application
 > **DB_URI**: is the mongodb uri connection string more info [here](https://docs.mongodb.com/manual/reference/connection-string/)
+> **WHITELIST**: list of urls allowed by cors e.g. `'["http://localhost:3000"]'`
 
 ## Installation
 

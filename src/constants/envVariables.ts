@@ -1,3 +1,5 @@
-const { DB_URI, PORT } = process.env
+const { DB_URI, PORT, WHITELIST } = process.env
 
-export { DB_URI, PORT }
+const WHITE_LIST = JSON.parse(WHITELIST)
+
+export { DB_URI, PORT, WHITELIST, WHITE_LIST }
