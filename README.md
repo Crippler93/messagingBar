@@ -45,3 +45,5 @@ yarn dev
 While server is running, `/api-docs` endpoint it's accessible and have all the information about the API endpoints.
 
 ### Screenshots
+
+![openapi3-messaging](https://i.imgur.com/itrZlqU.png)
