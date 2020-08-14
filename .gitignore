@@ -1,1 +1,11 @@
-/node_modules
+# modules
+node_modules
+
+# Transpiled result
+dist
+
+# Debug files
+.vscode
+
+# yarn
+yarn-error.log
