@@ -34,10 +34,6 @@ export class App {
   }
 
   private loadDocumentationAPI() {
-    this.app.use(
-      '/api-docs',
-      swaggerUi.serve,
-      swaggerUi.setup(openApiDocumentation)
-    )
+    this.app.use('/', swaggerUi.serve, swaggerUi.setup(openApiDocumentation))
   }
 }
