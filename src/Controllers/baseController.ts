@@ -5,6 +5,7 @@ export class BaseController {
   constructor(public model: Model<Document>) {
     this.create = this.create.bind(this)
     this.getAll = this.getAll.bind(this)
+    this.deleteById = this.deleteById.bind(this)
   }
 
   public async create(req: Request, res: Response) {
@@ -21,5 +22,11 @@ export class BaseController {
   public async getAll(_: Request, res: Response) {
     const result = await this.model.find({})
     return res.send(result)
+  }
+
+  public async deleteById(req: Request, res: Response) {
+    const { id } = req.params
+    const result = await this.model.findByIdAndDelete(id)
+    return res.status(204).send(result)
   }
 }

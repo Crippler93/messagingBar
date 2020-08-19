@@ -7,5 +7,6 @@ export default class BaseRouter {
     this.baseController = new Controller()
     this.router.get('/', this.baseController.getAll)
     this.router.post('/', this.baseController.create)
+    this.router.delete('/:id', this.baseController.deleteById)
   }
 }

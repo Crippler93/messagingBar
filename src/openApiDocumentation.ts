@@ -188,6 +188,30 @@ export default {
           }
         }
       }
+    },
+    '/messages/{id}': {
+      delete: {
+        tags: ['CRUD operations'],
+        description: 'Delete message',
+        operationId: 'deleteMessage',
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            description: 'ObjectID of existing message',
+            example: '5f3c7f27818a5d4f94fafcca',
+            required: true
+          }
+        ],
+        responses: {
+          '204': {
+            description: 'Message deleted',
+            content: {
+              'application/json': {}
+            }
+          }
+        }
+      }
     }
   },
   components: {
@@ -204,6 +228,10 @@ export default {
           value: {
             type: 'string',
             example: 'Im going to take a break'
+          },
+          user: {
+            type: 'ObjectID',
+            example: '5f3578346fe70f23b8231b77'
           }
         }
       },
