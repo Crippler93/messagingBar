@@ -56,8 +56,8 @@ export default {
       },
       post: {
         tags: ['CRUD operations'],
-        description: 'Get users',
-        operationId: 'getUsers',
+        description: 'Create user',
+        operationId: 'postUser',
         parameters: [],
         requestBody: {
           content: {
@@ -87,10 +87,102 @@ export default {
                 schema: {
                   $ref: '#/components/schemas/Error'
                 }
-                // example: {
-                //   message: 'User identificationNumbers 10, 20 already exist',
-                //   internal_code: 'invalid_parameters'
-                // }
+              }
+            }
+          }
+        }
+      }
+    },
+    '/messages': {
+      get: {
+        tags: ['CRUD operations'],
+        description: 'Get all messages',
+        operationId: 'getMessages',
+        parameters: [],
+        responses: {
+          '200': {
+            description: 'Messages found',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/Messages'
+                }
+              }
+            }
+          }
+        }
+      },
+      post: {
+        tags: ['CRUD operations'],
+        description: 'Create Message',
+        operationId: 'postMessage',
+        parameters: [],
+        requestBody: {
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/Message'
+              }
+            }
+          },
+          required: true
+        },
+        responses: {
+          '200': {
+            description: 'New message created',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/Message'
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    '/states': {
+      get: {
+        tags: ['CRUD operations'],
+        description: 'Get all states',
+        operationId: 'getStates',
+        parameters: [],
+        responses: {
+          '200': {
+            description: 'States found',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/States'
+                }
+              }
+            }
+          }
+        }
+      },
+      post: {
+        tags: ['CRUD operations'],
+        description: 'Create state',
+        operationId: 'postState',
+        parameters: [],
+        requestBody: {
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/State'
+              }
+            }
+          },
+          required: true
+        },
+        responses: {
+          '200': {
+            description: 'New state created',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/State'
+                }
               }
             }
           }
@@ -100,6 +192,36 @@ export default {
   },
   components: {
     schemas: {
+      Messages: {
+        type: 'array',
+        items: {
+          $ref: '#/components/schemas/Message'
+        }
+      },
+      Message: {
+        type: 'object',
+        properties: {
+          value: {
+            type: 'string',
+            example: 'Im going to take a break'
+          }
+        }
+      },
+      States: {
+        type: 'array',
+        items: {
+          $ref: '#/components/schemas/State'
+        }
+      },
+      State: {
+        type: 'object',
+        properties: {
+          value: {
+            type: 'string',
+            example: 'Online'
+          }
+        }
+      },
       User: {
         type: 'object',
         properties: {
