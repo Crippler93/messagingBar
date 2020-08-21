@@ -3,8 +3,8 @@ import { Server } from 'http'
 
 import Message from '../Models/Message'
 
-export function startSocket(server: Server, config: any): void {
-  const io = Io(server, {})
+export function startSocket(server: Server, config: any = {}): void {
+  const io = Io(server, config)
   io.on('connection', (socket) => {
     socket.on('chat', async (value) => {
       try {
