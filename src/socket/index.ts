@@ -8,6 +8,7 @@ export function startSocket(server: Server, config: any = {}): void {
   io.on('connection', (socket) => {
     socket.on('chat', async (value) => {
       try {
+        // TODO: Move model logic on different files and update here
         await Message.create(JSON.parse(value))
         socket.emit('chat', value)
       } catch (err) {
