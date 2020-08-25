@@ -4,7 +4,7 @@ import model from '../Models/Users'
 import stateModel from '../Models/State'
 import { BaseController } from './baseController'
 
-class StateController extends BaseController {
+class UserController extends BaseController<typeof stateModel> {
   constructor() {
     super(model)
   }
@@ -25,4 +25,4 @@ class StateController extends BaseController {
   }
 }
 
-export default StateController
+export default UserController

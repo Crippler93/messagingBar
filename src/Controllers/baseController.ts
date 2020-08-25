@@ -1,11 +1,13 @@
 import { Model, Document } from 'mongoose'
 import { Request, Response } from 'express'
 
-export class BaseController {
-  constructor(public model: Model<Document>) {
+export class BaseController<M extends Model<Document>> {
+  constructor(public model: M) {
     this.create = this.create.bind(this)
     this.getAll = this.getAll.bind(this)
     this.deleteById = this.deleteById.bind(this)
+    this.findById = this.findById.bind(this)
+    this.patchById = this.patchById.bind(this)
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
@@ -28,5 +30,17 @@ export class BaseController {
     const { id } = req.params
     const result = await this.model.findByIdAndDelete(id)
     return res.status(204).send(result)
+  }
+
+  public async findById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
+    const result = await this.model.findById(id)
+    return res.send(result)
+  }
+
+  public async patchById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
+    const result = await this.model.findById(id, req.body)
+    return res.send(result)
   }
 }
