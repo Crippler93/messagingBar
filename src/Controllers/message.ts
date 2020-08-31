@@ -2,9 +2,11 @@ import { Request, Response } from 'express'
 
 import { BaseController } from './baseController'
 import model from '../Models/Message'
-import userModel from '../Models/Users'
 
-class MessageController extends BaseController<typeof userModel> {
+import MessageRepo from '../Repository/Message'
+
+class MessageController extends BaseController<typeof model> {
+  private repo = new MessageRepo()
   constructor() {
     super(model)
   }
@@ -15,18 +17,8 @@ class MessageController extends BaseController<typeof userModel> {
   }
 
   async create(req: Request, res: Response): Promise<Response> {
-    const instance = new this.model(req.body)
-    const error = instance.validateSync()
-    // Check if user exist in DB
-    const user = await userModel.findById(req.body.user)
-    if (!user) return res.status(400).send({ message: 'user invalid' })
-
-    if (!error) {
-      const result = await instance.save()
-      return res.send(result)
-    } else {
-      return res.status(400).send({ message: error.message })
-    }
+    const { code, result } = await this.repo.createOne(req.body)
+    return res.status(code).send(result)
   }
 }
 

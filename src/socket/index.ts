@@ -8,7 +8,7 @@ export function startSocket(server: Server, config: any = {}): void {
       try {
         // TODO: Move model logic on different files and update here
         // await Message.create(JSON.parse(value))
-        socket.emit('chat', value)
+        io.emit('chat', value)
       } catch (err) {
         console.error(err)
       }

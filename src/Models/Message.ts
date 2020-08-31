@@ -1,4 +1,7 @@
-import { Schema, model, Types } from 'mongoose'
+import { Schema, model, Types, Document } from 'mongoose'
+import { Message } from '../types/Message'
+
+export interface MessageDocument extends Document, Message {}
 
 const schema = new Schema(
   {
@@ -8,4 +11,4 @@ const schema = new Schema(
   { timestamps: true, versionKey: false }
 )
 
-export default model('message', schema)
+export default model<MessageDocument>('message', schema)
